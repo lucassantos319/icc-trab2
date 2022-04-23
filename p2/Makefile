@@ -2,7 +2,7 @@ DEPS = utils.h
 
 CC = gcc
 
-CFLAGS = -Wall -I/usr/local/include 
+CFLAGS = -Wall -I/usr/local/include -O3 -mavx -march=native
 
 LFLAGS = -L/usr/local/lib -lmatheval
 

@@ -9,13 +9,12 @@
 #include "Rosenbrock.h"
 
 void ResolveProblems(infos *in);
-uint EncontrarMax(double **x, int n);
-double *Retrosub(double *mF, double **mFD, int n);
+uint EncontrarMax(double *x, int n);
+double *Retrosub(double *mF, double *mFD, int n);
 void CopySolution(int type, infos *in, int i, double *x);
-void NewtonResolveMethod(double *mF, double **mFD, int n);
-double *NewtonModifyResolveMethod(double **A, double b[], int n);
-void TrocaLinhas(double **mFD, double *mF, int i, uint iPivo, int n);
-double *ResolveLinearSistem(double *mF, double **mFD, int n, int type);
-double *NewtonGaussSeidelResolveMethod(double **A, double b[], int n);
+void NewtonResolveMethod(double *mF, double *mFD, int n);
+void TrocaLinhas(double *mFD, double *mF, int i, uint iPivo, int n);
+double *ResolveLinearSistem(double *mF, double *mFD, int n, int type);
+double *NewtonGaussSeidelResolveMethod(double *A, double b[], int n);
 
 #endif

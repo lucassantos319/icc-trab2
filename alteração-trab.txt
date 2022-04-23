@@ -1,0 +1,12 @@
+1 - Alterações sobre estrutura de dados
+	- forma de alocar matriz
+	- adicionar formas de blocos
+
+
+-- Otimização simples -- 
+
+- OK - validado se existiam expressoes dentro de looping que estava sendo calculados 
+todas as iterações sem dependencia das iterações.  
+
+- OK - validado se existia algum looping que poderia terminar antes
+

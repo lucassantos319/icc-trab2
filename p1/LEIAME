@@ -1,0 +1,59 @@
+Nome: Alexandre Carneiro e Lucas Sidnei dos Santos
+GRR: 20166359 e 20163040
+
+function.c
+    No arquivo function.c estão todas as funções do programa que são relacionadas aos cálculos dos métodos.
+    Neste arquivo temos as seguintes funções:
+    
+    void ResolveProblems(infos *in);
+        -> A função que executa os metodos solicitados.
+    uint EncontrarMax(double **x, int n);
+        -> Entra a linha com valor máximo para que seja efetuada a troca de linhas (caso necessário)
+    double *Retrosub(double *mF, double **mFD,int n );
+        ->  Função para fazer a retrosubstituição que é utilizada na eliminação de Gauss
+    void CopySolution(int type,infos *in, int i,double *x);
+        -> Copia os dados para a nossa estrutura de dados.
+    void NewtonResolveMethod(double *mF, double **mFD ,int n);
+        -> Faz o método de Newton utilizando a eliminação de Gauss
+    double *NewtonModifyResolveMethod(double **A,double b[], int n);
+        -> Faz o método de Newton utilizando a fatoração LU
+    void TrocaLinhas(double **mFD, double *mF, int i, uint iPivo, int n);
+        -> Troca as linhas de uma matriz, dado a posição de referência
+    double *ResolveLinearSistem(double *mF, double **mFD,int n,int type);
+        -> faz a resolução do sistema linear. O método para a resolução é chamado internamente nesta função.
+    double *NewtonGaussSeidelResolveMethod(double **A,double b[], int n);
+        -> Faz o método de Newton utilizando Gauss-Seidel
+
+utils.c
+    No arquivo utils.c estão as funções para calcular tempos, gerar matriz, realizar prints e declaração de estrutura de dados
+    Neste arquivo temos as seguintes funções:
+    double **GetMatrix(infos *in, double *x, int type);
+        -> Cria a matriz que será utilizada para resolver o SL a cada iteração.
+    infos *GetInfos(int *countProblems);
+        -> Função que realiza a captura das informações necessárias para o sistema.
+    char* validateArgs(int argc, char *argv[]);
+        -> faz a validação dos argumentos passados ao rodar o programa
+    void PrintResult(infos in,char *arqName);
+        -> Faz o print das soluções conforme especificação do trabalho
+    void CalculateTimeDerivate(int type, infos *in, double timeDerivate);
+        -> Calcula o tempo para se fazer uma derivada
+    void CalculateTimeSL(int type, infos *in, double timeSL);
+        -> Calcula o tempo para resolver o sistema linear
+    void CalculateTimeTotal(int type, infos *in, double timeTotal);
+        -> Calcula o tempo o tempo total para rodar o método
+    void PrintSolution(infos *in,double **x, int it, int n);
+        -> Função auxiliar para debug.
+    void PrintVector(double *x, int n);
+        -> Função auxiliar para printar um vetor
+    void PrintMatrix(double **x, int n);
+        -> Função auxiliar para printar uma matriz
+    double GetBiggestValue(double *x, int n);
+        -> Retorna o maior valor de um array de n posições
+    double timestamp(void);
+        -> Função para informar o tempo
+
+
+Observações:
+    -> A matriz Hessiana não está sendo atualizada a cada HESS_STEPS para realizar a fatoração LU.
+    -> Temos um problema com o metódo de eliminação de Gauss. Com funções com muitas variáveis o nosso método tem problemas para resolver e acaba dando erro e/ou a resposta errada.
+

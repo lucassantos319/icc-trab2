@@ -2,6 +2,7 @@
 // GRR: 20166359 e 20163040
 
 #include "functions.h"
+#include <likwid.h>
 
 void TrocaLinhas(double *A, double *b, int l, uint iPivo, int n)
 {

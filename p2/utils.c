@@ -1,5 +1,8 @@
 // Nome: Alexandre Carneiro e Lucas Sidnei dos Santos
 // GRR: 20166359 e 20163040
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
 
 #include "utils.h"
 
@@ -203,12 +206,41 @@ double GetBiggestValue(double *x, int n)
     return max;
 }
 
+
+/*  Retorna tempo em milisegundos
+
+    Forma de uso:
+ 
+    double tempo;
+    tempo = timestamp();
+    <trecho de programa do qual se deseja medir tempo>
+    tempo = timestamp() - tempo;
+*/
+
 double timestamp(void)
 {
-    struct timeval tp;
-    gettimeofday(&tp, NULL);
-    return ((double)(tp.tv_sec * 1000.0 + tp.tv_usec / 1000.0));
+  struct timespec tp;
+  clock_gettime(CLOCK_MONOTONIC_RAW, &tp);
+  return((double)(tp.tv_sec*1.0e3 + tp.tv_nsec*1.0e-6));
 }
+
+/* Gera string '<baseName>_n'
+ * Por exemplo, se baseName = "ABC" e n = 10,
+ *  Função retorna a string "ABC_10"
+ * Útil para gerar marcadores para LIKWID
+ */
+string_t markerName(string_t baseName, int n)
+{
+    string_t mark = (string_t) malloc( (strlen(baseName)+1) + numDigits(n) + 1 );
+
+  sprintf(mark, "%s_%u", baseName,n);
+
+  // printf("*** %s\n", mark);
+
+  return mark;
+
+}
+
 
 void CalculateTimeTotal(int type, infos *in, double timeTotal)
 {

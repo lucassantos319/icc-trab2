@@ -10,10 +10,20 @@
 #include <string.h>
 #include <assert.h>
 #include <matheval.h>
+#include <time.h>
 #include <sys/time.h>
 
-#define BUFFER_SIZE 10000000
+typedef double real_t;
+typedef double rtime_t;
+typedef char * string_t;
+
+// SIMD alignment macros
 #define SIZE_BLOCK 10
+#define BUFFER_SIZE 10000000
+#define ALIGN_64 __attribute__((aligned(64)))
+#define ALIGN_32 __attribute__((aligned(32)))
+#define ALIGN_16 __attribute__((aligned(16)))
+#define numDigits(n)  6  // ( (int) log10(n) + 1 )
 
 typedef struct
 {
@@ -49,5 +59,6 @@ void PrintVector(double *x, int n);
 void PrintMatrix(double **x, int n);
 double GetBiggestValue(double *x, int n);
 double timestamp(void);
+string_t markerName(string_t baseName, int n);
 
 #endif

@@ -57,33 +57,35 @@ Iteração 	| Newton Padrão 	| Newton Inexato
 47 	| 2.76840873925999e-29	|  9.37843758292375e-10	| 
 48 	| 9.04724850675348e-30	|  7.30629357218733e-10	| 
 49 	| 4.39247612788386e-28	|  5.69197765439699e-10	| 
-Tempo total 	| 5.31841993331909e-01	| 2.20460498332977e+00
-Tempo derivadas | 2.31599807739258e-03	| 2.41398811340332e-03
-Tempo SL 	| 2.28433161973953e-01	| 1.87874382734299e+00
+Tempo total 	| 5.31376004219055e-01	| 1.92421901226044e+00
+Tempo derivadas | 2.33200192451477e-03	| 5.08993864059448e-04
+Tempo SL 	| 2.27805972099304e-01	| 1.64462700486183e+00
 #
 
 --------------------------------------------------------------------------------
-Group 1: BRANCH
-+------------------------------+---------+---------+
-|             Event            | Counter |  Core 3 |
-+------------------------------+---------+---------+
-|       INSTR_RETIRED_ANY      |  FIXC0  | 3856175 |
-|     CPU_CLK_UNHALTED_CORE    |  FIXC1  | 2287604 |
-|     CPU_CLK_UNHALTED_REF     |  FIXC2  | 9767470 |
-| BR_INST_RETIRED_ALL_BRANCHES |   PMC0  |  589267 |
-| BR_MISP_RETIRED_ALL_BRANCHES |   PMC1  |    6784 |
-+------------------------------+---------+---------+
+Group 1: FLOPS_DP
++------------------------------------------+---------+--------+
+|                   Event                  | Counter | Core 3 |
++------------------------------------------+---------+--------+
+|             INSTR_RETIRED_ANY            |  FIXC0  |   1535 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  |  11600 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  |  30814 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |      0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |      0 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |      0 |
++------------------------------------------+---------+--------+
 
-+----------------------------+----------+
-|           Metric           |  Core 3  |
-+----------------------------+----------+
-|     Runtime (RDTSC) [s]    |   0.0105 |
-|    Runtime unhalted [s]    |   0.0007 |
-|         Clock [MHz]        | 798.1589 |
-|             CPI            |   0.5932 |
-|         Branch rate        |   0.1528 |
-|  Branch misprediction rate |   0.0018 |
-| Branch misprediction ratio |   0.0115 |
-|   Instructions per branch  |   6.5440 |
-+----------------------------+----------+
++----------------------+--------------+
+|        Metric        |    Core 3    |
++----------------------+--------------+
+|  Runtime (RDTSC) [s] |       0.0072 |
+| Runtime unhalted [s] | 3.403771e-06 |
+|      Clock [MHz]     |    1282.9436 |
+|          CPI         |       7.5570 |
+|      DP MFLOP/s      |            0 |
+|    AVX DP MFLOP/s    |            0 |
+|    Packed MUOPS/s    |            0 |
+|    Scalar MUOPS/s    |            0 |
+|  Vectorization ratio |       -      |
++----------------------+--------------+
 

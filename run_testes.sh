@@ -1,6 +1,33 @@
+sizes=(10)
+groups=("L3" "L2CACHE" "FLOPS_DP")
 
-for N in 10 32 50 64 100 128 200 250 256 300 400 512 600 1000 1024 2000 2048 3000 4096
+for folderCount in seq 2
 do
-	likwid-perfctr -c 3 -g BRANCH ./p2/newtonPC < ./in/$N.txt > ./p2/tempos/$N.txt
+	for G in $groups
+	do
+		if [$G == "L3"]; then
+			for N in $sizes
+			do
+				likwid-perfctr -c 3 -g $G ./p$folderCount/newtonPC < ./in/$N.txt > ./p$folderCount/l3/$N.txt
+			done
+		else
+			if [$G == "L2CACHE"]; then
+				for N in $sizes
+				do
+					likwid-perfctr -c 3 -g $G ./p$folderCount/newtonPC < ./in/$N.txt > ./p$folderCount/l2cache/$N.txt
+				done
+			else
+				if [$G == "FLOPS_DP"]; then
+					for N in $sizes
+					do
+						likwid-perfctr -c 3 -g $G ./p$folderCount/newtonPC < ./in/$N.txt > ./p$folderCount/flops/$N.txt
+					done
+				fi
+			fi
+		fi
+
+
+		
+	done
 done
 

@@ -57,32 +57,35 @@ Iteração 	| Newton Padrão 	| Newton Inexato
 47 	| 2.76840873925999e-29	|  9.37843758292375e-10	| 
 48 	| 9.04724850675348e-30	|  7.30629357218733e-10	| 
 49 	| 4.39247612788386e-28	|  5.69197765439699e-10	| 
-Tempo total 	| 5.30929982662201e-01	| 1.80190399289131e+00
-Tempo derivadas | 2.42400169372559e-03	| 5.51998615264893e-04
-Tempo SL 	| 2.27464079856873e-01	| 1.53730708360672e+00
+Tempo total 	| 5.30749976634979e-01	| 1.88630998134613e+00
+Tempo derivadas | 2.35000252723694e-03	| 5.01006841659546e-04
+Tempo SL 	| 2.27616995573044e-01	| 1.55182793736458e+00
 #
 
 --------------------------------------------------------------------------------
-Group 1: L2CACHE
-+-----------------------+---------+--------+
-|         Event         | Counter | Core 3 |
-+-----------------------+---------+--------+
-|   INSTR_RETIRED_ANY   |  FIXC0  |   7713 |
-| CPU_CLK_UNHALTED_CORE |  FIXC1  |  28594 |
-|  CPU_CLK_UNHALTED_REF |  FIXC2  |  56658 |
-| L2_TRANS_ALL_REQUESTS |   PMC0  |   5598 |
-|     L2_RQSTS_MISS     |   PMC1  |   2477 |
-+-----------------------+---------+--------+
+Group 1: FLOPS_DP
++------------------------------------------+---------+--------+
+|                   Event                  | Counter | Core 3 |
++------------------------------------------+---------+--------+
+|             INSTR_RETIRED_ANY            |  FIXC0  |   7126 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  |  47578 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  | 129930 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |      0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |     22 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |      0 |
++------------------------------------------+---------+--------+
 
 +----------------------+--------------+
 |        Metric        |    Core 3    |
 +----------------------+--------------+
 |  Runtime (RDTSC) [s] |       0.0071 |
-| Runtime unhalted [s] | 8.390291e-06 |
-|      Clock [MHz]     |    1719.9332 |
-|          CPI         |       3.7072 |
-|    L2 request rate   |       0.7258 |
-|     L2 miss rate     |       0.3211 |
-|     L2 miss ratio    |       0.4425 |
+| Runtime unhalted [s] | 1.396073e-05 |
+|      Clock [MHz]     |    1247.9435 |
+|          CPI         |       6.6767 |
+|      DP MFLOP/s      |       0.0031 |
+|    AVX DP MFLOP/s    |            0 |
+|    Packed MUOPS/s    |            0 |
+|    Scalar MUOPS/s    |       0.0031 |
+|  Vectorization ratio |            0 |
 +----------------------+--------------+
 

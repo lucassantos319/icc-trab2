@@ -134,6 +134,8 @@ void CopySolution(int type, infos *in, int i, double *x)
 
 void ResolveProblems(infos *in)
 {
+    LIKWID_MARKER_INIT;
+
     in->solution = malloc(sizeof(double) * in->n);
     double initValuesAux;
     double *x_ant = (double *)malloc(sizeof(double) * in->n);
@@ -148,6 +150,8 @@ void ResolveProblems(infos *in)
 
     for (int type = 0; type < 2; ++type)
     {
+        LIKWID_MARKER_START(markerName(type==0?"newton_padrao_total":"newton_inexato_total",10));
+
         double *mFD = GetMatrix(in, x_ant, type);
         double *mF = in->solution;
         double timeTotalInicial = timestamp();
@@ -198,7 +202,12 @@ void ResolveProblems(infos *in)
 
         mFD = GetMatrix(in, x_ant, type);
         mF = in->solution;
+    
+        LIKWID_MARKER_STOP(markerName(type==0?"newton_padrao_total":"newton_inexato_total",10));
+
     }
+
+    LIKWID_MARKER_CLOSE;    
 }
 
 double *Retrosub(double *mF, double *mFD, int n)
@@ -221,12 +230,23 @@ double *ResolveLinearSistem(double *mF, double *mFD, int n, int type)
 
     if (type == 0)
     {
+        LIKWID_MARKER_START(markerName("resolucao_sl_newton_padrao",10));
         NewtonResolveMethod(mF, mFD, n);
-        return Retrosub(mF, mFD, n);
+        double *x = Retrosub(mF, mFD, n);
+        LIKWID_MARKER_STOP(markerName("resolucao_sl_newton_padrao",10));
+
+        return x;
     }
 
     if (type == 1)
-        return NewtonGaussSeidelResolveMethod(mFD, mF, n);
+    {
+        LIKWID_MARKER_START(markerName("resolucao_sl_newton_inexato",10));
+        double *x = NewtonGaussSeidelResolveMethod(mFD, mF, n); 
+        LIKWID_MARKER_STOP(markerName("resolucao_sl_newton_inexato",10));
+
+        return x;
+
+    }
 
     return NULL;
 }
@@ -249,8 +269,12 @@ double *GetMatrix(infos *in, double *x, int type)
 
             for (int i = istart; i < iend; ++i)
             {
+                LIKWID_MARKER_START(markerName(type==0?"vetor_gradiente_newton_padrao":"vetor_gradiente_newton_inexato",10));
                 in->solution[i] = rosenbrock_dx(i, x, in->n) * -1;
+                LIKWID_MARKER_STOP(markerName(type==0?"vetor_gradiente_newton_padrao":"vetor_gradiente_newton_inexato",10));
 
+
+                LIKWID_MARKER_START(markerName(type==0?"matriz_hessiana_newton_padrao":"matriz_hessiana_newton_inexato",10));
                 for (int j = jstart; j < jend; j += SIZE_BLOCK)
                 {
                     mF[(i * in->n) + j] = rosenbrock_dxdy(i, j, x, in->n);
@@ -264,6 +288,8 @@ double *GetMatrix(infos *in, double *x, int type)
                     mF[(i * in->n) + (j + 8)] = rosenbrock_dxdy(i, (j + 8), x, in->n);
                     mF[(i * in->n) + (j + 9)] = rosenbrock_dxdy(i, (j + 9), x, in->n);
                 }
+                LIKWID_MARKER_STOP(markerName(type==0?"matriz_hessiana_newton_padrao":"matriz_hessiana_newton_inexato",10));
+
             }
         }
     }

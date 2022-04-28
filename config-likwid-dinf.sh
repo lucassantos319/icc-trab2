@@ -2,16 +2,16 @@
 
 1. Acrescentar linhas abaixo em '${HOME}/.bashrc':
 
-       export LIKWID_HOME="/home/soft/likwid"
+      export LIKWID_HOME="/home/soft/likwid"
  
-       if [ -d "${LIKWID_HOME}" ] ; then
-	   PATH="$PATH:${LIKWID_HOME}/bin:${LIKWID_HOME}/sbin"
-	   export LIKWID_LIB="${LIKWID_HOME}/lib"
-	   export LIKWID_INCLUDE="${LIKWID_HOME}/include"
-	   export LIKWID_MAN="${LIKWID_HOME}/man"
-	   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${LIKWID_LIB}"
-	   export MANPATH="$MANPATH:${LIKWID_MAN}"
-       fi
+      if [ -d "${LIKWID_HOME}" ] ; then
+         PATH="$PATH:${LIKWID_HOME}/bin:${LIKWID_HOME}/sbin"
+         export LIKWID_LIB="${LIKWID_HOME}/lib"
+         export LIKWID_INCLUDE="${LIKWID_HOME}/include"
+         export LIKWID_MAN="${LIKWID_HOME}/man"
+         export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${LIKWID_LIB}"
+         export MANPATH="$MANPATH:${LIKWID_MAN}"
+      fi
     
 
 2. Opções para compilação de programas:

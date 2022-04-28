@@ -2,9 +2,9 @@ DEPS = utils.h
 
 CC = gcc
 
-CFLAGS = -Wall -I/usr/local/include -O3 -mavx -march=native
+CFLAGS = -Wall -DLIKWID_PERFMON -I${LIKWID_INCLUDE} -O3 -mavx -march=native 
 
-LFLAGS = -L/usr/local/lib -lmatheval
+LFLAGS = -L/usr/local/lib -lmatheval -L${LIKWID_LIB} -llikwid
 
 all: newton
 

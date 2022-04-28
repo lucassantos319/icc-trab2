@@ -68,25 +68,24 @@ int GetMaxIt(infos in)
     return 0;
 }
 
-void PrintResult(infos in, char *arqName)
+void PrintResult(infos *in, char *arqName)
 {
-
     if (arqName == NULL)
     {
 
-        printf("%d\n", in.n);
-        printf("%s\n", in.f);
+        printf("%d\n", in->n);
+        printf("%s\n", in->f);
         printf("#\n");
         printf("Iteração \t| Newton Padrão \t| Newton Inexato\n");
 
-        int maxIt = GetMaxIt(in);
+        int maxIt = GetMaxIt(*in);
         for (int j = 0; j < maxIt; ++j)
         {
             printf("%d \t|", j);
 
-            if (in.newton.it > j)
+            if (in->newton.it > j)
             {
-                double fx = in.newton.solution[j][0];
+                double fx = in->newton.solution[j][0];
                 if (isnan(fx) || isinf(fx))
                     printf(" \t\t\t| ");
                 else
@@ -95,9 +94,9 @@ void PrintResult(infos in, char *arqName)
             else
                 printf(" \t\t\t| ");
 
-            if (in.newtonInaccurate.it > j)
+            if (in->newtonInaccurate.it > j)
             {
-                double fx = in.newtonInaccurate.solution[j][0];
+                double fx = in->newtonInaccurate.solution[j][0];
                 if (isnan(fx) || isinf(fx))
                     printf(" \t\t\t| ");
                 else
@@ -109,9 +108,9 @@ void PrintResult(infos in, char *arqName)
             printf("\n");
         }
 
-        printf("Tempo total \t| %1.14e\t| %1.14e\n", in.newton.timeTotal, in.newtonInaccurate.timeTotal);
-        printf("Tempo derivadas | %1.14e\t| %1.14e\n", in.newton.timeDerivate, in.newtonInaccurate.timeDerivate);
-        printf("Tempo SL \t| %1.14e\t| %1.14e\n", in.newton.timeSL, in.newtonInaccurate.timeSL);
+        printf("Tempo total \t| %1.14e\t| %1.14e\n", in->newton.timeTotal, in->newtonInaccurate.timeTotal);
+        printf("Tempo derivadas | %1.14e\t| %1.14e\n", in->newton.timeDerivate, in->newtonInaccurate.timeDerivate);
+        printf("Tempo SL \t| %1.14e\t| %1.14e\n", in->newton.timeSL, in->newtonInaccurate.timeSL);
         printf("#\n\n");
     }
     else
@@ -120,28 +119,28 @@ void PrintResult(infos in, char *arqName)
         printf("entrei aqui");
         arq = fopen(arqName, "w+");
 
-        fprintf(arq, "%d\n", in.n);
-        fprintf(arq, "%s\n", in.f);
+        fprintf(arq, "%d\n", in->n);
+        fprintf(arq, "%s\n", in->f);
         fprintf(arq, "#\n");
         fprintf(arq, "Iteração \t| Newton Padrão \t| Newton Modificado \t| Newton Inexato\n");
 
-        int maxIt = GetMaxIt(in);
+        int maxIt = GetMaxIt(*in);
         for (int j = 0; j < maxIt; ++j)
         {
             fprintf(arq, "%d \t|", j);
 
-            if (in.newton.it > j)
+            if (in->newton.it > j)
             {
-                double fx = in.newton.solution[j][0];
+                double fx = in->newton.solution[j][0];
                 if (isnan(fx) || isinf(fx))
                     fprintf(arq, " %1.14e\t\t\t| ", fx);
                 else
                     fprintf(arq, " %1.14e\t| ", fx);
             }
 
-            if (in.newtonInaccurate.it > j)
+            if (in->newtonInaccurate.it > j)
             {
-                double fx = in.newtonInaccurate.solution[j][0];
+                double fx = in->newtonInaccurate.solution[j][0];
                 if (isnan(fx) || isinf(fx))
                     fprintf(arq, " %1.14e\t\t\t| ", fx);
                 else
@@ -150,9 +149,9 @@ void PrintResult(infos in, char *arqName)
             fprintf(arq, "\n");
         }
 
-        fprintf(arq, "Tempo total \t| %1.14e\t| %1.14e\n", in.newton.timeTotal, in.newtonInaccurate.timeTotal);
-        fprintf(arq, "Tempo derivadas | %1.14e\t| %1.14e\n", in.newton.timeDerivate, in.newtonInaccurate.timeDerivate);
-        fprintf(arq, "Tempo SL \t| %1.14e\t| %1.14e\n", in.newton.timeSL, in.newtonInaccurate.timeSL);
+        fprintf(arq, "Tempo total \t| %1.14e\t| %1.14e\n", in->newton.timeTotal, in->newtonInaccurate.timeTotal);
+        fprintf(arq, "Tempo derivadas | %1.14e\t| %1.14e\n", in->newton.timeDerivate, in->newtonInaccurate.timeDerivate);
+        fprintf(arq, "Tempo SL \t| %1.14e\t| %1.14e\n", in->newton.timeSL, in->newtonInaccurate.timeSL);
         fprintf(arq, "#\n\n");
     }
 }

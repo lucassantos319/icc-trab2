@@ -39,7 +39,7 @@ typedef struct
 double **GetMatrix(infos *in, double *x, int type);
 infos *GetInfos(int *countProblems);
 char *validateArgs(int argc, char *argv[]);
-void PrintResult(infos in, char *arqName);
+void PrintResult(infos *in, char *arqName);
 void CalculateTimeDerivate(int type, infos *in, double timeDerivate);
 void CalculateTimeSL(int type, infos *in, double timeSL);
 void CalculateTimeTotal(int type, infos *in, double timeTotal);

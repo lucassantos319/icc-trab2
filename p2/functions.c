@@ -263,12 +263,12 @@ double *GetMatrix(infos *in, double *x, int type)
 
         LIKWID_MARKER_START(markerName(type == 0 ? "matriz_hessiana_newton_padrao" : "matriz_hessiana_newton_inexato", 10));
         for (int j = 0; j < in->n; ++j)
-            mF[(i * n) + j] = rosenbrock_dxdy(i, j, x, in->n);
+            mF[(i * in->n) + j] = rosenbrock_dxdy(i, j, x, in->n);
         LIKWID_MARKER_STOP(markerName(type == 0 ? "matriz_hessiana_newton_padrao" : "matriz_hessiana_newton_inexato", 10));
-    }
-}
+    
+	}
 
-CalculateTimeDerivate(type, in, timeDerivate);
+	CalculateTimeDerivate(type, in, timeDerivate);
 
-return mF;
+	return mF;
 }

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-sizes=(10 32 50 64 100 128 200 250 256 300 400 512 600 1000 1024 2000 2048 3000 4096)
+sizes=(10 32 50 64 100 128 200 250 256 300 400 512 600 1000 1024 2000 2048)
 groups=("L3" "L2CACHE" "FLOPS_DP")
-folders=(1 2)
-for folderCount in 1 2
+folders=(2)
+for folderCount in 2
 do
 	echo "-- Inicio do processo para p$folderCount --"
 	for i in "L3" "L2CACHE" "FLOPS_DP"

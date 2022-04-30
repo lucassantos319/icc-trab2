@@ -57,273 +57,273 @@ Iteração 	| Newton Padrão 	| Newton Inexato
 47 	| 2.42202484615810e-27	|  9.41036982958302e-10	| 
 48 	| 2.51610883505735e-27	|  7.33117059894722e-10	| 
 49 	| 3.43826258135742e-27	|  5.71135822932018e-10	| 
-Tempo total 	| 1.57907701929808e+04	| 1.00497310349941e+04
-Tempo derivadas | 1.90009309053421e+02	| 1.89231240987778e+02
-Tempo SL 	| 6.38127516138554e+03	| 6.60350430011749e+02
+Tempo total 	| 1.68822200889587e+04	| 1.11131631920338e+04
+Tempo derivadas | 2.10268081068993e+02	| 2.10621670007706e+02
+Tempo SL 	| 6.44192783308029e+03	| 6.61519076108932e+02
 #
 
 --------------------------------------------------------------------------------
-Region newton_padrao_total_10, Group 1: L3
+Region newton_padrao_total_10, Group 1: FLOPS_DP
 +-------------------+-----------+
 |    Region Info    |   Core 3  |
 +-------------------+-----------+
-| RDTSC Runtime [s] | 16.181410 |
+| RDTSC Runtime [s] | 17.318200 |
 |     call count    |         1 |
 +-------------------+-----------+
 
-+-----------------------+---------+-------------+
-|         Event         | Counter |    Core 3   |
-+-----------------------+---------+-------------+
-|   INSTR_RETIRED_ANY   |  FIXC0  | 34839550000 |
-| CPU_CLK_UNHALTED_CORE |  FIXC1  | 25094820000 |
-|  CPU_CLK_UNHALTED_REF |  FIXC2  | 22564070000 |
-|    L2_LINES_IN_ALL    |   PMC0  |  5656678000 |
-|     L2_TRANS_L2_WB    |   PMC1  |   379643000 |
-+-----------------------+---------+-------------+
++------------------------------------------+---------+-------------+
+|                   Event                  | Counter |    Core 3   |
++------------------------------------------+---------+-------------+
+|             INSTR_RETIRED_ANY            |  FIXC0  | 34846640000 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  | 25285370000 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  | 22734850000 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |           0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |  3396601000 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |  1110336000 |
++------------------------------------------+---------+-------------+
 
-+-------------------------------+------------+
-|             Metric            |   Core 3   |
-+-------------------------------+------------+
-|      Runtime (RDTSC) [s]      |    16.1814 |
-|      Runtime unhalted [s]     |     7.3635 |
-|          Clock [MHz]          |  3790.2138 |
-|              CPI              |     0.7203 |
-|  L3 load bandwidth [MBytes/s] | 22373.0436 |
-|  L3 load data volume [GBytes] |   362.0274 |
-| L3 evict bandwidth [MBytes/s] |  1501.5473 |
-| L3 evict data volume [GBytes] |    24.2972 |
-|    L3 bandwidth [MBytes/s]    | 23874.5909 |
-|    L3 data volume [GBytes]    |   386.3245 |
-+-------------------------------+------------+
++----------------------+-----------+
+|        Metric        |   Core 3  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |   17.3182 |
+| Runtime unhalted [s] |    7.4194 |
+|      Clock [MHz]     | 3790.3174 |
+|          CPI         |    0.7256 |
+|      DP MFLOP/s      |  452.5843 |
+|    AVX DP MFLOP/s    |  256.4553 |
+|    Packed MUOPS/s    |   64.1138 |
+|    Scalar MUOPS/s    |  196.1290 |
+|  Vectorization ratio |   24.6362 |
++----------------------+-----------+
 
-Region vetor_gradiente_newton_padrao_10, Group 1: L3
+Region vetor_gradiente_newton_padrao_10, Group 1: FLOPS_DP
 +-------------------+----------+
 |    Region Info    |  Core 3  |
 +-------------------+----------+
-| RDTSC Runtime [s] | 0.014087 |
+| RDTSC Runtime [s] | 0.012231 |
 |     call count    |    26624 |
 +-------------------+----------+
 
-+-----------------------+---------+-----------+
-|         Event         | Counter |   Core 3  |
-+-----------------------+---------+-----------+
-|   INSTR_RETIRED_ANY   |  FIXC0  | 133361500 |
-| CPU_CLK_UNHALTED_CORE |  FIXC1  | 253134000 |
-|  CPU_CLK_UNHALTED_REF |  FIXC2  | 227884600 |
-|    L2_LINES_IN_ALL    |   PMC0  |   8970097 |
-|     L2_TRANS_L2_WB    |   PMC1  |    558573 |
-+-----------------------+---------+-----------+
++------------------------------------------+---------+-----------+
+|                   Event                  | Counter |   Core 3  |
++------------------------------------------+---------+-----------+
+|             INSTR_RETIRED_ANY            |  FIXC0  | 135769300 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  | 241622200 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  | 217596700 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |         0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |    558532 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |         0 |
++------------------------------------------+---------+-----------+
 
-+-------------------------------+------------+
-|             Metric            |   Core 3   |
-+-------------------------------+------------+
-|      Runtime (RDTSC) [s]      |     0.0141 |
-|      Runtime unhalted [s]     |     0.0743 |
-|          Clock [MHz]          |  3785.5812 |
-|              CPI              |     1.8981 |
-|  L3 load bandwidth [MBytes/s] | 40753.7175 |
-|  L3 load data volume [GBytes] |     0.5741 |
-| L3 evict bandwidth [MBytes/s] |  2537.7570 |
-| L3 evict data volume [GBytes] |     0.0357 |
-|    L3 bandwidth [MBytes/s]    | 43291.4745 |
-|    L3 data volume [GBytes]    |     0.6098 |
-+-------------------------------+------------+
++----------------------+-----------+
+|        Metric        |   Core 3  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |    0.0122 |
+| Runtime unhalted [s] |    0.0709 |
+|      Clock [MHz]     | 3784.2768 |
+|          CPI         |    1.7797 |
+|      DP MFLOP/s      |   45.6647 |
+|    AVX DP MFLOP/s    |         0 |
+|    Packed MUOPS/s    |         0 |
+|    Scalar MUOPS/s    |   45.6647 |
+|  Vectorization ratio |         0 |
++----------------------+-----------+
 
-Region matriz_hessiana_newton_padrao_10, Group 1: L3
+Region matriz_hessiana_newton_padrao_10, Group 1: FLOPS_DP
 +-------------------+----------+
 |    Region Info    |  Core 3  |
 +-------------------+----------+
-| RDTSC Runtime [s] | 0.089398 |
+| RDTSC Runtime [s] | 0.087857 |
 |     call count    |    26624 |
 +-------------------+----------+
 
-+-----------------------+---------+-----------+
-|         Event         | Counter |   Core 3  |
-+-----------------------+---------+-----------+
-|   INSTR_RETIRED_ANY   |  FIXC0  | 541400900 |
-| CPU_CLK_UNHALTED_CORE |  FIXC1  | 403521300 |
-|  CPU_CLK_UNHALTED_REF |  FIXC2  | 363261800 |
-|    L2_LINES_IN_ALL    |   PMC0  |  12638940 |
-|     L2_TRANS_L2_WB    |   PMC1  |   1150365 |
-+-----------------------+---------+-----------+
++------------------------------------------+---------+-----------+
+|                   Event                  | Counter |   Core 3  |
++------------------------------------------+---------+-----------+
+|             INSTR_RETIRED_ANY            |  FIXC0  | 543797300 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  | 392808600 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  | 353680700 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |         0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |    452244 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |         0 |
++------------------------------------------+---------+-----------+
 
-+-------------------------------+-----------+
-|             Metric            |   Core 3  |
-+-------------------------------+-----------+
-|      Runtime (RDTSC) [s]      |    0.0894 |
-|      Runtime unhalted [s]     |    0.1184 |
-|          Clock [MHz]          | 3785.6790 |
-|              CPI              |    0.7453 |
-|  L3 load bandwidth [MBytes/s] | 9048.1909 |
-|  L3 load data volume [GBytes] |    0.8089 |
-| L3 evict bandwidth [MBytes/s] |  823.5439 |
-| L3 evict data volume [GBytes] |    0.0736 |
-|    L3 bandwidth [MBytes/s]    | 9871.7348 |
-|    L3 data volume [GBytes]    |    0.8825 |
-+-------------------------------+-----------+
++----------------------+-----------+
+|        Metric        |   Core 3  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |    0.0879 |
+| Runtime unhalted [s] |    0.1153 |
+|      Clock [MHz]     | 3785.0183 |
+|          CPI         |    0.7223 |
+|      DP MFLOP/s      |    5.1475 |
+|    AVX DP MFLOP/s    |         0 |
+|    Packed MUOPS/s    |         0 |
+|    Scalar MUOPS/s    |    5.1475 |
+|  Vectorization ratio |         0 |
++----------------------+-----------+
 
-Region resolucao_sl_newton_padrao_10, Group 1: L3
+Region resolucao_sl_newton_padrao_10, Group 1: FLOPS_DP
 +-------------------+----------+
 |    Region Info    |  Core 3  |
 +-------------------+----------+
-| RDTSC Runtime [s] | 6.371432 |
+| RDTSC Runtime [s] | 6.431543 |
 |     call count    |       50 |
 +-------------------+----------+
 
-+-----------------------+---------+-------------+
-|         Event         | Counter |    Core 3   |
-+-----------------------+---------+-------------+
-|   INSTR_RETIRED_ANY   |  FIXC0  | 33908470000 |
-| CPU_CLK_UNHALTED_CORE |  FIXC1  | 24016540000 |
-|  CPU_CLK_UNHALTED_REF |  FIXC2  | 21593290000 |
-|    L2_LINES_IN_ALL    |   PMC0  |  5616608000 |
-|     L2_TRANS_L2_WB    |   PMC1  |   376674500 |
-+-----------------------+---------+-------------+
++------------------------------------------+---------+-------------+
+|                   Event                  | Counter |    Core 3   |
++------------------------------------------+---------+-------------+
+|             INSTR_RETIRED_ANY            |  FIXC0  | 33908470000 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  | 24248790000 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  | 21801390000 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |           0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |  3394765000 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |  1110285000 |
++------------------------------------------+---------+-------------+
 
-+-------------------------------+------------+
-|             Metric            |   Core 3   |
-+-------------------------------+------------+
-|      Runtime (RDTSC) [s]      |     6.3714 |
-|      Runtime unhalted [s]     |     7.0471 |
-|          Clock [MHz]          |  3790.4317 |
-|              CPI              |     0.7083 |
-|  L3 load bandwidth [MBytes/s] | 56417.9155 |
-|  L3 load data volume [GBytes] |   359.4629 |
-| L3 evict bandwidth [MBytes/s] |  3783.6342 |
-| L3 evict data volume [GBytes] |    24.1072 |
-|    L3 bandwidth [MBytes/s]    | 60201.5497 |
-|    L3 data volume [GBytes]    |   383.5701 |
-+-------------------------------+------------+
++----------------------+-----------+
+|        Metric        |   Core 3  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |    6.4315 |
+| Runtime unhalted [s] |    7.1153 |
+|      Clock [MHz]     | 3790.5676 |
+|          CPI         |    0.7151 |
+|      DP MFLOP/s      | 1218.3554 |
+|    AVX DP MFLOP/s    |  690.5248 |
+|    Packed MUOPS/s    |  172.6312 |
+|    Scalar MUOPS/s    |  527.8306 |
+|  Vectorization ratio |   24.6453 |
++----------------------+-----------+
 
-Region newton_inexato_total_10, Group 1: L3
+Region newton_inexato_total_10, Group 1: FLOPS_DP
 +-------------------+-----------+
 |    Region Info    |   Core 3  |
 +-------------------+-----------+
-| RDTSC Runtime [s] | 10.428690 |
+| RDTSC Runtime [s] | 11.534740 |
 |     call count    |         1 |
 +-------------------+-----------+
 
-+-----------------------+---------+------------+
-|         Event         | Counter |   Core 3   |
-+-----------------------+---------+------------+
-|   INSTR_RETIRED_ANY   |  FIXC0  | 2979080000 |
-| CPU_CLK_UNHALTED_CORE |  FIXC1  | 3489983000 |
-|  CPU_CLK_UNHALTED_REF |  FIXC2  | 3137731000 |
-|    L2_LINES_IN_ALL    |   PMC0  |  121218200 |
-|     L2_TRANS_L2_WB    |   PMC1  |    4941418 |
-+-----------------------+---------+------------+
++------------------------------------------+---------+------------+
+|                   Event                  | Counter |   Core 3   |
++------------------------------------------+---------+------------+
+|             INSTR_RETIRED_ANY            |  FIXC0  | 2999920000 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  | 3465720000 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  | 3116189000 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |          0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |  666158500 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |  162610800 |
++------------------------------------------+---------+------------+
 
-+-------------------------------+-----------+
-|             Metric            |   Core 3  |
-+-------------------------------+-----------+
-|      Runtime (RDTSC) [s]      |   10.4287 |
-|      Runtime unhalted [s]     |    1.0241 |
-|          Clock [MHz]          | 3790.5712 |
-|              CPI              |    1.1715 |
-|  L3 load bandwidth [MBytes/s] |  743.9060 |
-|  L3 load data volume [GBytes] |    7.7580 |
-| L3 evict bandwidth [MBytes/s] |   30.3251 |
-| L3 evict data volume [GBytes] |    0.3163 |
-|    L3 bandwidth [MBytes/s]    |  774.2310 |
-|    L3 data volume [GBytes]    |    8.0742 |
-+-------------------------------+-----------+
++----------------------+-----------+
+|        Metric        |   Core 3  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |   11.5347 |
+| Runtime unhalted [s] |    1.0169 |
+|      Clock [MHz]     | 3790.2516 |
+|          CPI         |    1.1553 |
+|      DP MFLOP/s      |  114.1423 |
+|    AVX DP MFLOP/s    |   56.3899 |
+|    Packed MUOPS/s    |   14.0975 |
+|    Scalar MUOPS/s    |   57.7524 |
+|  Vectorization ratio |   19.6208 |
++----------------------+-----------+
 
-Region vetor_gradiente_newton_inexato_10, Group 1: L3
+Region vetor_gradiente_newton_inexato_10, Group 1: FLOPS_DP
 +-------------------+----------+
 |    Region Info    |  Core 3  |
 +-------------------+----------+
-| RDTSC Runtime [s] | 0.013154 |
+| RDTSC Runtime [s] | 0.012181 |
 |     call count    |    26624 |
 +-------------------+----------+
 
-+-----------------------+---------+-----------+
-|         Event         | Counter |   Core 3  |
-+-----------------------+---------+-----------+
-|   INSTR_RETIRED_ANY   |  FIXC0  | 133579700 |
-| CPU_CLK_UNHALTED_CORE |  FIXC1  | 249701700 |
-|  CPU_CLK_UNHALTED_REF |  FIXC2  | 224566800 |
-|    L2_LINES_IN_ALL    |   PMC0  |   8489856 |
-|     L2_TRANS_L2_WB    |   PMC1  |    549537 |
-+-----------------------+---------+-----------+
++------------------------------------------+---------+-----------+
+|                   Event                  | Counter |   Core 3  |
++------------------------------------------+---------+-----------+
+|             INSTR_RETIRED_ANY            |  FIXC0  | 135976300 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  | 242871500 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  | 218397800 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |         0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |    558532 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |         0 |
++------------------------------------------+---------+-----------+
 
-+-------------------------------+------------+
-|             Metric            |   Core 3   |
-+-------------------------------+------------+
-|      Runtime (RDTSC) [s]      |     0.0132 |
-|      Runtime unhalted [s]     |     0.0733 |
-|          Clock [MHz]          |  3789.4223 |
-|              CPI              |     1.8693 |
-|  L3 load bandwidth [MBytes/s] | 41307.0748 |
-|  L3 load data volume [GBytes] |     0.5434 |
-| L3 evict bandwidth [MBytes/s] |  2673.7516 |
-| L3 evict data volume [GBytes] |     0.0352 |
-|    L3 bandwidth [MBytes/s]    | 43980.8264 |
-|    L3 data volume [GBytes]    |     0.5785 |
-+-------------------------------+------------+
++----------------------+-----------+
+|        Metric        |   Core 3  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |    0.0122 |
+| Runtime unhalted [s] |    0.0713 |
+|      Clock [MHz]     | 3789.8905 |
+|          CPI         |    1.7861 |
+|      DP MFLOP/s      |   45.8538 |
+|    AVX DP MFLOP/s    |         0 |
+|    Packed MUOPS/s    |         0 |
+|    Scalar MUOPS/s    |   45.8538 |
+|  Vectorization ratio |         0 |
++----------------------+-----------+
 
-Region matriz_hessiana_newton_inexato_10, Group 1: L3
+Region matriz_hessiana_newton_inexato_10, Group 1: FLOPS_DP
 +-------------------+----------+
 |    Region Info    |  Core 3  |
 +-------------------+----------+
-| RDTSC Runtime [s] | 0.088146 |
+| RDTSC Runtime [s] | 0.086710 |
 |     call count    |    26624 |
 +-------------------+----------+
 
-+-----------------------+---------+-----------+
-|         Event         | Counter |   Core 3  |
-+-----------------------+---------+-----------+
-|   INSTR_RETIRED_ANY   |  FIXC0  | 541325100 |
-| CPU_CLK_UNHALTED_CORE |  FIXC1  | 399494300 |
-|  CPU_CLK_UNHALTED_REF |  FIXC2  | 359114900 |
-|    L2_LINES_IN_ALL    |   PMC0  |  12400580 |
-|     L2_TRANS_L2_WB    |   PMC1  |   1156468 |
-+-----------------------+---------+-----------+
++------------------------------------------+---------+-----------+
+|                   Event                  | Counter |   Core 3  |
++------------------------------------------+---------+-----------+
+|             INSTR_RETIRED_ANY            |  FIXC0  | 543720900 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  | 391099200 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  | 351678100 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |         0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |    452244 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |         0 |
++------------------------------------------+---------+-----------+
 
-+-------------------------------+-----------+
-|             Metric            |   Core 3  |
-+-------------------------------+-----------+
-|      Runtime (RDTSC) [s]      |    0.0881 |
-|      Runtime unhalted [s]     |    0.1172 |
-|          Clock [MHz]          | 3791.1784 |
-|              CPI              |    0.7380 |
-|  L3 load bandwidth [MBytes/s] | 9003.6596 |
-|  L3 load data volume [GBytes] |    0.7936 |
-| L3 evict bandwidth [MBytes/s] |  839.6740 |
-| L3 evict data volume [GBytes] |    0.0740 |
-|    L3 bandwidth [MBytes/s]    | 9843.3336 |
-|    L3 data volume [GBytes]    |    0.8677 |
-+-------------------------------+-----------+
++----------------------+-----------+
+|        Metric        |   Core 3  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |    0.0867 |
+| Runtime unhalted [s] |    0.1148 |
+|      Clock [MHz]     | 3790.0066 |
+|          CPI         |    0.7193 |
+|      DP MFLOP/s      |    5.2156 |
+|    AVX DP MFLOP/s    |         0 |
+|    Packed MUOPS/s    |         0 |
+|    Scalar MUOPS/s    |    5.2156 |
+|  Vectorization ratio |         0 |
++----------------------+-----------+
 
-Region resolucao_sl_newton_inexato_10, Group 1: L3
+Region resolucao_sl_newton_inexato_10, Group 1: FLOPS_DP
 +-------------------+----------+
 |    Region Info    |  Core 3  |
 +-------------------+----------+
-| RDTSC Runtime [s] | 0.650465 |
+| RDTSC Runtime [s] | 0.650970 |
 |     call count    |       50 |
 +-------------------+----------+
 
-+-----------------------+---------+------------+
-|         Event         | Counter |   Core 3   |
-+-----------------------+---------+------------+
-|   INSTR_RETIRED_ANY   |  FIXC0  | 2052112000 |
-| CPU_CLK_UNHALTED_CORE |  FIXC1  | 2429223000 |
-|  CPU_CLK_UNHALTED_REF |  FIXC2  | 2184041000 |
-|    L2_LINES_IN_ALL    |   PMC0  |   82478300 |
-|     L2_TRANS_L2_WB    |   PMC1  |    1968484 |
-+-----------------------+---------+------------+
++------------------------------------------+---------+------------+
+|                   Event                  | Counter |   Core 3   |
++------------------------------------------+---------+------------+
+|             INSTR_RETIRED_ANY            |  FIXC0  | 2052118000 |
+|           CPU_CLK_UNHALTED_CORE          |  FIXC1  | 2428307000 |
+|           CPU_CLK_UNHALTED_REF           |  FIXC2  | 2183335000 |
+| FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE |   PMC0  |          0 |
+|    FP_ARITH_INST_RETIRED_SCALAR_DOUBLE   |   PMC1  |  664323000 |
+| FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE |   PMC2  |  162560000 |
++------------------------------------------+---------+------------+
 
-+-------------------------------+-----------+
-|             Metric            |   Core 3  |
-+-------------------------------+-----------+
-|      Runtime (RDTSC) [s]      |    0.6505 |
-|      Runtime unhalted [s]     |    0.7128 |
-|          Clock [MHz]          | 3790.5624 |
-|              CPI              |    1.1838 |
-|  L3 load bandwidth [MBytes/s] | 8115.1361 |
-|  L3 load data volume [GBytes] |    5.2786 |
-| L3 evict bandwidth [MBytes/s] |  193.6814 |
-| L3 evict data volume [GBytes] |    0.1260 |
-|    L3 bandwidth [MBytes/s]    | 8308.8175 |
-|    L3 data volume [GBytes]    |    5.4046 |
-+-------------------------------+-----------+
++----------------------+-----------+
+|        Metric        |   Core 3  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |    0.6510 |
+| Runtime unhalted [s] |    0.7125 |
+|      Clock [MHz]     | 3790.3697 |
+|          CPI         |    1.1833 |
+|      DP MFLOP/s      | 2019.3917 |
+|    AVX DP MFLOP/s    |  998.8789 |
+|    Packed MUOPS/s    |  249.7197 |
+|    Scalar MUOPS/s    | 1020.5128 |
+|  Vectorization ratio |   19.6594 |
++----------------------+-----------+
 

@@ -150,7 +150,7 @@ void ResolveProblems(infos *in)
 
     for (int type = 0; type < 2; ++type)
     {
-        LIKWID_MARKER_START(markerName(type==0?"newton_padrao_total":"newton_inexato_total",10));
+        LIKWID_MARKER_START(markerName(type == 0 ? "newton_padrao_total" : "newton_inexato_total", 10));
 
         double *mFD = GetMatrix(in, x_ant, type);
         double *mF = in->solution;
@@ -202,12 +202,11 @@ void ResolveProblems(infos *in)
 
         mFD = GetMatrix(in, x_ant, type);
         mF = in->solution;
-    
-        LIKWID_MARKER_STOP(markerName(type==0?"newton_padrao_total":"newton_inexato_total",10));
 
+        LIKWID_MARKER_STOP(markerName(type == 0 ? "newton_padrao_total" : "newton_inexato_total", 10));
     }
 
-    LIKWID_MARKER_CLOSE;    
+    LIKWID_MARKER_CLOSE;
 }
 
 double *Retrosub(double *mF, double *mFD, int n)
@@ -230,22 +229,21 @@ double *ResolveLinearSistem(double *mF, double *mFD, int n, int type)
 
     if (type == 0)
     {
-        LIKWID_MARKER_START(markerName("resolucao_sl_newton_padrao",10));
+        LIKWID_MARKER_START(markerName("resolucao_sl_newton_padrao", 10));
         NewtonResolveMethod(mF, mFD, n);
         double *x = Retrosub(mF, mFD, n);
-        LIKWID_MARKER_STOP(markerName("resolucao_sl_newton_padrao",10));
+        LIKWID_MARKER_STOP(markerName("resolucao_sl_newton_padrao", 10));
 
         return x;
     }
 
     if (type == 1)
     {
-        LIKWID_MARKER_START(markerName("resolucao_sl_newton_inexato",10));
-        double *x = NewtonGaussSeidelResolveMethod(mFD, mF, n); 
-        LIKWID_MARKER_STOP(markerName("resolucao_sl_newton_inexato",10));
+        LIKWID_MARKER_START(markerName("resolucao_sl_newton_inexato", 10));
+        double *x = NewtonGaussSeidelResolveMethod(mFD, mF, n);
+        LIKWID_MARKER_STOP(markerName("resolucao_sl_newton_inexato", 10));
 
         return x;
-
     }
 
     return NULL;
@@ -257,44 +255,20 @@ double *GetMatrix(infos *in, double *x, int type)
     double *mF = malloc(sizeof(double) * in->n * in->n);
     double timeDerivate = timestamp();
 
-    for (int ii = 0; ii < in->n / SIZE_BLOCK; ++ii)
+    for (int i = 0; i < in->n; ++i)
     {
-        int istart = ii * SIZE_BLOCK;
-        int iend = istart + SIZE_BLOCK;
+        LIKWID_MARKER_START(markerName(type == 0 ? "vetor_gradiente_newton_padrao" : "vetor_gradiente_newton_inexato", 10));
+        in->solution[i] = rosenbrock_dx(i, x, in->n) * -1;
+        LIKWID_MARKER_STOP(markerName(type == 0 ? "vetor_gradiente_newton_padrao" : "vetor_gradiente_newton_inexato", 10));
 
-        for (int jj = 0; jj < in->n / SIZE_BLOCK; ++jj)
-        {
-            int jstart = jj * SIZE_BLOCK;
-            int jend = jstart + SIZE_BLOCK;
-
-            for (int i = istart; i < iend; ++i)
-            {
-                LIKWID_MARKER_START(markerName(type==0?"vetor_gradiente_newton_padrao":"vetor_gradiente_newton_inexato",10));
-                in->solution[i] = rosenbrock_dx(i, x, in->n) * -1;
-                LIKWID_MARKER_STOP(markerName(type==0?"vetor_gradiente_newton_padrao":"vetor_gradiente_newton_inexato",10));
-
-
-                LIKWID_MARKER_START(markerName(type==0?"matriz_hessiana_newton_padrao":"matriz_hessiana_newton_inexato",10));
-                for (int j = jstart; j < jend; j += SIZE_BLOCK)
-                {
-                    mF[(i * in->n) + j] = rosenbrock_dxdy(i, j, x, in->n);
-                    mF[(i * in->n) + (j + 1)] = rosenbrock_dxdy(i, (j + 1), x, in->n);
-                    mF[(i * in->n) + (j + 2)] = rosenbrock_dxdy(i, (j + 2), x, in->n);
-                    mF[(i * in->n) + (j + 3)] = rosenbrock_dxdy(i, (j + 3), x, in->n);
-                    mF[(i * in->n) + (j + 4)] = rosenbrock_dxdy(i, (j + 4), x, in->n);
-                    mF[(i * in->n) + (j + 5)] = rosenbrock_dxdy(i, (j + 5), x, in->n);
-                    mF[(i * in->n) + (j + 6)] = rosenbrock_dxdy(i, (j + 6), x, in->n);
-                    mF[(i * in->n) + (j + 7)] = rosenbrock_dxdy(i, (j + 7), x, in->n);
-                    mF[(i * in->n) + (j + 8)] = rosenbrock_dxdy(i, (j + 8), x, in->n);
-                    mF[(i * in->n) + (j + 9)] = rosenbrock_dxdy(i, (j + 9), x, in->n);
-                }
-                LIKWID_MARKER_STOP(markerName(type==0?"matriz_hessiana_newton_padrao":"matriz_hessiana_newton_inexato",10));
-
-            }
-        }
+        LIKWID_MARKER_START(markerName(type == 0 ? "matriz_hessiana_newton_padrao" : "matriz_hessiana_newton_inexato", 10));
+        for (int j = 0; j < in->n; ++j)
+            mF[(i * n) + j] = rosenbrock_dxdy(i, j, x, in->n);
+        LIKWID_MARKER_STOP(markerName(type == 0 ? "matriz_hessiana_newton_padrao" : "matriz_hessiana_newton_inexato", 10));
     }
+}
 
-    CalculateTimeDerivate(type, in, timeDerivate);
+CalculateTimeDerivate(type, in, timeDerivate);
 
-    return mF;
+return mF;
 }
